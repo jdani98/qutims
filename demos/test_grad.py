@@ -2,7 +2,7 @@
 """
  Title: EMC model PSR gradient test
  Description: This script is to test that emc.dm.emc accurately computes the
- analytical gradient with respect to 2-point finite difference method.
+ analytical gradient with respect to the 2-point finite difference method.
 
 Created on Tue Oct  3 19:17:25 2023
 @author: jdviqueira
@@ -13,7 +13,7 @@ from random import random
 from time import time
 
 import sys
-sys.path.append('../..')
+sys.path.append('../')
 from qurecnets.emc.dm import emc
 
 
@@ -28,8 +28,8 @@ network = emc(nT,nE,nM,nL,nx)
 
 
 
-### NUMERICAL PARTIAL DERIVATIVE
-print('NUMERICAL PARTIAL DERIVATIVE')
+### NUMERICAL PARTIAL DERIVATIVES
+print('NUMERICAL PARTIAL DERIVATIVES')
 def tpfd(i,eps=1.e-8):
     # two-point finite difference derivative with respect to theta_i
     theta_ps = np.copy(theta); theta_ps[i] += eps
@@ -52,8 +52,8 @@ print(t1-t0, ' s')
 
 
 
-### ANALYTICAL PARTIAL DERIVATIVE
-print('ANALYTICAL PARTIAL DERIVATIVE')
+### ANALYTICAL PARTIAL DERIVATIVES
+print('\nANALYTICAL PARTIAL DERIVATIVES')
 t2 = time()
 solu = network.evaluate(x,theta, savegrad=True)
 network.grad_psr(theta)

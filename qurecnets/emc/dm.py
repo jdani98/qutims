@@ -762,5 +762,10 @@ class emc:
         Shape is (Ntheta,Ntheta,nT)
 
         """
-        return np.array([[[np.dot(self.flips,item1) for item1 in item2] for 
-                          item2 in item3] for item3 in self.hessian])
+        hessZ = np.zeros((len(self.th),len(self.th),self.nT))
+        for key,value in self.hessian.items():
+            i = key[0]; j = key[1]
+            expZs = [np.dot(self.flips,item) for item in value]
+            hessZ[i,j] = expZs
+            if i!=j: hessZ[j,i] = expZs
+        return hessZ
