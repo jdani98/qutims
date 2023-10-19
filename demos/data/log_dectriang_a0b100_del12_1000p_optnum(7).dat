@@ -1,0 +1,20 @@
+Script:    emc_opt_dectriang_multiproc.py
+DATA:      dectriang_a0b100_del12_1000p.dat
+Descript.: The QRNN must predict a series of one variable for every input window. Trained with multiple samples (windows)
+Optimizer: L-BFGS-B
+nA:        1
+nB:        2
+nL:        2
+dr:        3
+batch_size:20
+
+ Optimization results:
+fun:     6.30958e-03
+message: CONVERGENCE: NORM_OF_PROJECTED_GRADIENT_<=_PGTOL
+nfev:    353
+nit:     304
+njev:    353
+status:  0
+success: True
+
+Exec. time: 5523 s

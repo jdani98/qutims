@@ -10,6 +10,7 @@ Created on Tue Oct  3 16:41:03 2023
 """
 
 import numpy as np
+from scipy.optimize import minimize
 
 import sys
 sys.path.append('../..')
@@ -769,3 +770,152 @@ class emc:
             hessZ[i,j] = expZs
             if i!=j: hessZ[j,i] = expZs
         return hessZ
+
+
+
+
+
+class emc_optimization(emc):
+    """
+    Class that inherits emc to load data and run the training process with the
+    scipy.minimize package. 
+    The series must be previously divided into Nsamples windows. Each of them
+    is a sample. The samples are destined to 3 groups:
+        * training: ntr_samp samples,
+        * validation: nval_samp samples,
+        * test: nts_samp samples,
+    where ntr_samp + nval_samp + nts_samp = Nsamples.
+    The Root Mean Square Error (RMSE) is computed with the total of points in-
+    volved in the corresponding group.
+    """
+    
+    def load_x(self,tr_data,val_data):
+        """
+        Load input data.
+
+        Parameters
+        ----------
+        tr_data : array
+            Training input data. shape=(ntr_samp,nT,nE)
+        val_data : array
+            Validation input data. shape=(nval_samp,nT,nE)
+
+        Returns
+        -------
+        None.
+
+        """
+        
+        self.x_tr = tr_data
+        self.ntr_samp = len(tr_data)
+        self.x_val = val_data
+        self.nval_samp = len(val_data)
+        self.iteration = 0
+    
+    
+    
+    def load_y(self,tr_data,val_data):
+        """
+        Load output data (labels).
+
+        Parameters
+        ----------
+        tr_data : array
+            Training output data. shape=(ntr_samp,nT,nE)
+        val_data : array
+            Validation output data. shape=(nval_samp,nT,nE)
+
+        Returns
+        -------
+        None.
+
+        """
+        
+        assert self.ntr_samp==len(tr_data)
+        assert self.nval_samp==len(val_data)
+        self.y_tr = tr_data
+        self.y_val = val_data
+        self.Nwout = tr_data.shape[1]
+        # we choose the length of the targets as the length of output window to
+        # compute the loss function
+
+    
+
+    def cost_tr(self,params):
+        """
+        Evaluation of training data Loss.
+
+        Parameters
+        ----------
+        params : array
+            Trainable parameters. The first parameter is b, a bias added to the
+            output. The remaining parameters are those for rotations gates.
+
+        Returns
+        -------
+        L : float
+            Loss (cost function) of training data.
+
+        """
+        
+        L = 0 # cost function
+        npoints = 0
+        for ibatch in range(self.ntr_samp):
+            self.evaluate(self.x_tr[ibatch],params[1:],savegrad=False)
+            evalu = self.evaluate_Z()
+            yb = np.array([params[0]]*len(evalu)) + evalu
+            self.yb = yb
+            L += sum([(ybi-yi)**2 for (ybi,yi) in zip(yb[-self.Nwout:],
+            self.y_tr[ibatch][-self.Nwout:])])
+            npoints += len(evalu)
+        L = np.sqrt(L/npoints)
+        return L
+    
+    
+
+    def cost_val(self,params):
+        """
+        Evaluation of validation data Loss.
+
+        Parameters
+        ----------
+        params : array
+            Trainable parameters. The first parameter is b, a bias added to the
+            output. The remaining parameters are those for rotations gates.
+
+        Returns
+        -------
+        L : float
+            Loss (cost function) of validation data.
+
+        """
+
+        flips = [1,-1]
+        for i in range(self.nE-1):
+            flips = np.kron(flips, [1,-1])
+
+        L = 0 # cost function
+        npoints = 0
+        for ibatch in range(self.nval_samp):
+            self.evaluate(self.x_val[ibatch],params[1:],savegrad=False)
+            evalu = self.evaluate_Z()
+            yb = np.array([params[0]]*len(evalu)) + evalu
+            self.yb = yb
+            L += sum([(ybi-yi)**2 for (ybi,yi) in zip(yb[-self.Nwout:],
+            self.y_val[ibatch][-self.Nwout:])])
+            npoints += len(evalu)
+        L = np.sqrt(L/npoints)
+        return L
+
+    
+    def callback(self,param):
+        self.iteration += 1
+        train_loss = self.cost_tr(param) # This makes a duplicate evaluation
+        val_loss = self.cost_val(param)
+        print('Iteration %6i, Training loss: %8.6f, Validation loss: %8.6f' 
+              %(self.iteration,train_loss,val_loss))
+
+    
+    def optimize(self,param0, jac=None, method='L-BFGS-B', options=None):
+        return minimize(self.cost_tr,param0,jac=jac, method=method, 
+                        options=options, callback=self.callback)
