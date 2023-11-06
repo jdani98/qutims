@@ -11,11 +11,13 @@ Examples with different datasets are included as a guide to a more friendly use.
 ## Requirements
 **QURECNETS** is characterized by its low package requirements. It requires **Python 3**.
 
-The following packages are mandatory to be installed, in the indicated version or a newer one (we cannot assure that an older version will work):\\
+The following packages are mandatory to be installed, in the indicated version or a newer one (we cannot assure that an older version will work):
+
 [NumPy 1.24.2](https://numpy.org/doc/stable/release/1.24.2-notes.html)
 [SciPy 1.8.1](https://docs.scipy.org/doc/scipy-1.8.1/index.html)
 
-We recommend to have installed:\\
+We recommend to have installed:
+
 [Matplotlib 3.5.2](https://matplotlib.org/3.5.3/users/index.html)
 
 ## Content
@@ -27,6 +29,6 @@ We recommend to have installed:\\
 - `test` contains scripts to test the developed software.
 - `demos` contains scripts to generate synthetic time series and examples of scripts to train, validate and test QRNNs with the available datasets.
      
-![***Fig.1*** General form of the QRNN circuit. Arrows show the information flux.](.images/quantum_circuit.pdf)
-![***Fig.2*** QRNN ansatz, $U (\bm{x}_{(t)}, \bm{\theta})$, consisting of two parts. The first one is the data encoding, and gates inside the orange box are repeated with different parameters, that are a subset of trainable parameters, $\bm{\alpha}_i^r \in \{\bm{\theta}\}$. We use use one qubit per input variable. The second one is the evolution and entanglement part, where the blue box is repeated $L$ times (layers). Each layer is a column of $U_3$ rotations parameterised by a threesome of parameters, $\bm{\beta}_i^l \in \{ \bm{\theta} \}$, and CZ gates entangling every qubit from E with every qubit from M. A final column of $U_3$ gates is applied over register E before measurement.](.images/quantum_ansatz.pdf)
+![***Fig.1*** General form of the QRNN circuit. Arrows show the information flux.](.images/quantum_circuit.png)
+![***Fig.2*** QRNN ansatz, $U (\bm{x}_{(t)}, \bm{\theta})$, consisting of two parts. The first one is the data encoding, and gates inside the orange box are repeated with different parameters, that are a subset of trainable parameters, $\bm{\alpha}_i^r \in \{\bm{\theta}\}$. We use use one qubit per input variable. The second one is the evolution and entanglement part, where the blue box is repeated $L$ times (layers). Each layer is a column of $U_3$ rotations parameterised by a threesome of parameters, $\bm{\beta}_i^l \in \{ \bm{\theta} \}$, and CZ gates entangling every qubit from E with every qubit from M. A final column of $U_3$ gates is applied over register E before measurement.](.images/quantum_ansatz.png)
 
