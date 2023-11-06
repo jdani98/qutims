@@ -12,11 +12,11 @@ Examples with different datasets are included as a guide to a more friendly use.
 **QURECNETS** is characterized by its low package requirements. It requires **Python 3**.
 
 The following packages are mandatory to be installed, in the indicated version or a newer one (we cannot assure that an older version will work):\\
-`[NumPy 1.24.2](https://numpy.org/doc/stable/release/1.24.2-notes.html)`
-`[SciPy 1.8.1](https://docs.scipy.org/doc/scipy-1.8.1/index.html)`
+[NumPy 1.24.2](https://numpy.org/doc/stable/release/1.24.2-notes.html)
+[SciPy 1.8.1](https://docs.scipy.org/doc/scipy-1.8.1/index.html)
 
 We recommend to have installed:\\
-`[Matplotlib 3.5.2](https://matplotlib.org/3.5.3/users/index.html)`
+[Matplotlib 3.5.2](https://matplotlib.org/3.5.3/users/index.html)
 
 ## Content
 - `qurecnets` is a module for time series prediction.
