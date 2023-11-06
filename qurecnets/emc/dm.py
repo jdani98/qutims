@@ -2,7 +2,7 @@
 """
  Title: EMC model Density Matrix emulation
  Description: this is a python module that contains a class to emulate with
- Density Matrix methods (arXiv:XXXX.XXXXX) the Quantum Recurrent Neural Network
+ Density Matrix methods (arXiv:2310.20671) the Quantum Recurrent Neural Network
  model called "EMC model".
 
 Created on Tue Oct  3 16:41:03 2023

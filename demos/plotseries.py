@@ -20,18 +20,18 @@ def rmse(a,b):
     return np.sqrt((1./len(a))*sum([(ai-bi)**2 for ai,bi in zip(a,b)]))
 
 
-fname_x = 'dataset_dectriang_a0b100_del12_1000p.dat' # !!! DATA INPUT FILENAME
-fname_p = 'par_dectriang_a0b100_del12_1000p_optnum(1).dat' # !!! PARAMETERS
+#fname_x = 'dataset_dectriang_a0b100_del12_1000p.dat' # !!! DATA INPUT FILENAME
+#fname_p = 'par_dectriang_a0b100_del12_1000p_optnum-1.dat' # !!! PARAMETERS
 #fname_x = 'dataset_vdp1_a0b100_del15_mu2_1000p.dat' # (b)
-#fname_p = 'par_vdp1_a0b100_del15_mu2_1000p_optnum(8).dat' # (b)
-#fname_x = 'dataset_vdp2_a0b100_del05_del118_mu02_mu11_1000p.dat' # (c)
-#fname_p = 'par_vdp2_a0b100_del05_del118_mu02_mu11_1000p_optnum(8).dat' # (c)
+#fname_p = 'par_vdp1_a0b100_del15_mu2_1000p_optnum-8.dat' # (b)
+fname_x = 'dataset_vdp2_a0b100_del05_del118_mu02_mu11_1000p.dat' # (c)
+fname_p = 'par_vdp2_a0b100_del05_del118_mu02_mu11_1000p_optnum-8.dat' # (c)
 
 
 data = np.loadtxt('data/'+fname_x)
-x_data = np.array([[data[i,1]] for i in range(len(data[:,1]))]) # input data
+#x_data = np.array([[data[i,1]] for i in range(len(data[:,1]))]) # input data
 #x_data = np.array([[data[i,1],data[i,1]] for i in range(len(data[:,1]))]) #(b)
-#x_data = np.array([[data[i,1],data[i,2]] for i in range(len(data[:,1]))]) #(c)
+x_data = np.array([[data[i,1],data[i,2]] for i in range(len(data[:,1]))]) #(c)
 
 
 ## PREPARING DATA #############################################################
@@ -41,12 +41,12 @@ N = 5  # Size of window to predict
 nsamples = int(len(data[:,1])/nT)
 
 times = data[:,0].reshape(nsamples,nT)
-sequences = x_data.reshape(nsamples,nT,1) # (a)
-#sequences = x_data.reshape(nsamples,nT,2) # (b) and (c)
-tarseq = data[:,2].reshape(nsamples,nT) # (a) and (b)
-#tarseq = data[:,3].reshape(nsamples,nT) # (c)
-targets = np.array([item[-N:] for item in data[:,2].reshape(nsamples,nT)]) #
-#targets = np.array([item[-N:] for item in data[:,3].reshape(nsamples,nT)])# (c)
+#sequences = x_data.reshape(nsamples,nT,1) # (a)
+sequences = x_data.reshape(nsamples,nT,2) # (b) and (c)
+#tarseq = data[:,2].reshape(nsamples,nT) # (a) and (b)
+tarseq = data[:,3].reshape(nsamples,nT) # (c)
+#targets = np.array([item[-N:] for item in data[:,2].reshape(nsamples,nT)]) #
+targets = np.array([item[-N:] for item in data[:,3].reshape(nsamples,nT)])# (c)
 tartimes =  np.array([item[-N:] for item in times])
 
 
@@ -92,16 +92,18 @@ filltest_times  = np.array([data[:,0][trval_npoints+N*i:trval_npoints+N*(i+1)]
                             for i in range(ts_npoints//N)])
 filltest_sequences = np.array([x_data[trval_npoints-nT+N+N*i:
                     trval_npoints-nT+N+N*i+nT] for i in range(ts_npoints//N)])
-filltest_targets = np.array([data[:,2][trval_npoints+N*i:trval_npoints+N*i+N] 
-                             for i in range(ts_npoints//N)])
-#filltest_targets = np.array([data[:,3][trval_npoints+N*i:trval_npoints+N*i+N] 
+#filltest_targets = np.array([data[:,2][trval_npoints+N*i:trval_npoints+N*i+N] 
 #                             for i in range(ts_npoints//N)])
+filltest_targets = np.array([data[:,3][trval_npoints+N*i:trval_npoints+N*i+N] 
+                             for i in range(ts_npoints//N)]) # case (c)
 ###############################################################################
 
 
 params = np.loadtxt('data/'+fname_p)[:,1]
 
-nE = 1; nM = 2; nL = 2; nx = 3
+#nE = 1; nM = 2; nL = 2; nx = 3 # (a)
+#nE = 2; nM = 3; nL = 2; nx = 1 # (b)
+nE = 2; nM = 3; nL = 5; nx = 3 # (c)
 
 
 model = dm.emc(nT,nE,nM,nL,nx)

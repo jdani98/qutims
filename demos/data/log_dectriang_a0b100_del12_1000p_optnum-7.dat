@@ -1,0 +1,20 @@
+Script:    optimization_num.py
+DATA:      dectriang_a0b100_del12_1000p.dat
+Descript.: The QRNN must predict a series of one variable for every input window. Trained with multiple samples (windows). Numerical gradients.
+Optimizer: L-BFGS-B
+nA:        1
+nB:        2
+nL:        2
+dr:        3
+batch_size:20
+
+ Optimization results:
+fun:     6.25898e-03
+message: CONVERGENCE: NORM_OF_PROJECTED_GRADIENT_<=_PGTOL
+nfev:    11840
+nit:     312
+njev:    370
+status:  0
+success: True
+
+Exec. time: 2361 s

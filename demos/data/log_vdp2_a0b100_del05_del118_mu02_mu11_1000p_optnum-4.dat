@@ -1,0 +1,20 @@
+Script:    optimization_num.py
+DATA:      vdp2_a0b100_del05_del118_mu02_mu11_1000p.dat
+Descript.: The QRNN must predict a series of one variable for every input window. Trained with multiple samples (windows)
+Optimizer: L-BFGS-B
+nA:        2
+nB:        3
+nL:        5
+dr:        3
+batch_size:20
+
+ Optimization results:
+fun:     4.08306e-02
+message: STOP: TOTAL NO. of ITERATIONS REACHED LIMIT
+nfev:    110494
+nit:     1000
+njev:    1094
+status:  1
+success: False
+
+Exec. time: 39590 s
