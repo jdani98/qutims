@@ -1,0 +1,20 @@
+# exclude:
+.trash/
+slurm*
+runpymulti.sh
+runpy.sh
+.grad_*
+.param_*
+
+__pycache__/
+dask_cluster.py
+dask_submit_all.sh
+dask_submit_cluster.sh
+dask_submit_scheduler.sh
+dask_submit_workers.sh
+PreLoad.py
+wraper.sh
+scheduler_info*.json
+ssh_command*.txt
+
+cases/

@@ -1,0 +1,12 @@
+Metadata-Version: 2.1
+Name: qutims
+Version: 0.2
+Summary: QUTIMS is a repository with Quantum Machine Learning algorithms for Multivariate Time Series prediction.QUTIMS tasks are performed through Quantum Recurrent Neural Networks (QRNNs), which at the NISQ era of quantumcomputing are mainly emulated thorugh classical computer. The repository contains QURECNETS, a 100 % python module totrain and test Quantum Recurrent Neural Networks and make accurate multivariate time series predictions. QURECNETSrelies on a specific Density Matrix method that emulates QRNNs. Examples with different datasets are included as aguide for a more friendly use.
+Home-page: UNKNOWN
+Author: J.D. Viqueira
+Author-email: jdviqueira@cesga.es
+License: GNU General Public License version 3
+Platform: UNKNOWN
+
+UNKNOWN
+
