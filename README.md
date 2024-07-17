@@ -61,7 +61,7 @@ For the installation of ``qutims`` library containing ``qurecnets`` module and s
 &emsp;
 
 ![Ansatz CZme3](.images/quantum_ansatz_CZme3.png)
-**Figure 3:** QRNN ansatz, $ U (x_{(t)}, \theta) $, consisting of two parts. The first one is the data encoding, and gates inside the orange box are repeated with different parameters, that are a subset of trainable parameters, $\alpha_i^r \in \{\theta\}$. We use use one qubit per input variable. The second one is the evolution and entanglement part, where the blue box is repeated $L$ times (layers). Each layer is a column of $U_3$ rotations parameterised by a threesome of parameters, $\beta_i^l \in \{ \theta \}$, and CZ gates entangling every qubit from E with every qubit from M. A final column of $U_3$ gates is applied over register E before measurement.
+**Figure 3:** QRNN ansatz, $U (x_{(t)}, \theta)$, consisting of two parts. The first one is the data encoding, and gates inside the orange box are repeated with different parameters, that are a subset of trainable parameters, $\alpha_i^r \in \{\theta\}$. We use use one qubit per input variable. The second one is the evolution and entanglement part, where the blue box is repeated $L$ times (layers). Each layer is a column of $U_3$ rotations parameterised by a threesome of parameters, $\beta_i^l \in \{ \theta \}$, and CZ gates entangling every qubit from E with every qubit from M. A final column of $U_3$ gates is applied over register E before measurement.
 
 
 ## Reference
