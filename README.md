@@ -1,5 +1,5 @@
 # qutims
-Release version 1 (Nov 23) of QUTIMS repository
+Release version 1 (Nov 23) of QUTIMS repository 
 
 ## Description
 **QUTIMS** is a repository with **Qu**antum Machine Learning algorithms for Multivariate **Tim**e *S*eries prediction.
