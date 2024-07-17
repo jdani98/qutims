@@ -1,0 +1,4 @@
+seed for init 13280
+len param0 26
+nT=20; nE=1; nM=2; nL=3; nx=3
+adam config: LR=0.001000, shuffle=True

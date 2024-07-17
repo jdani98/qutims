@@ -46,7 +46,7 @@ For the installation of ``qutims`` library containing ``qurecnets`` module and s
     - `loss_fs`. Defines functions for Loss function computation.
     
 - `test` contains scripts to test the developed software.
-- `cases` contains scripts to generate synthetic time series and examples of scripts to train, validate and test QRNNs with the available datasets (not available until a later commit).
+- `cases` contains scripts to generate synthetic time series and examples of scripts to train, validate and test QRNNs with the available datasets.
 
 &emsp;
 

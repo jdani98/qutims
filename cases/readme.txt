@@ -1,0 +1,2 @@
+This folder contains the scripts and results for the article.
+Some of the scripts are prepared to be run in slurm systems and using Dask. The user may need to make some modifications to make the code runnable.

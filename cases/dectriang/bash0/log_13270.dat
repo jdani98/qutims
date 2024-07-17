@@ -1,0 +1,14 @@
+seed for init 13270
+len param0 26
+nT=20; nE=1; nM=2; nL=3; nx=3
+adam config: LR=0.001000, shuffle=True
+==> Loss (RMSE)       0    0.164834   0.191098
+==> Loss (RMSE)       1    0.153798   0.202848
+==> Loss (RMSE)       2    0.147818   0.203900
+==> Loss (RMSE)       3    0.143241   0.199421
+==> Loss (RMSE)       4    0.138787   0.197656
+==> Loss (RMSE)       5    0.132956   0.185392
+==> Loss (RMSE)       6    0.128345   0.178978
+==> Loss (RMSE)       7    0.123890   0.166124
+==> Loss (RMSE)       8    0.118915   0.163166
+==> Loss (RMSE)       9    0.114581   0.156991
