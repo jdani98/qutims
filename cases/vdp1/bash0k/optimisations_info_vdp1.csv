@@ -1,1 +1,2 @@
-,13627,54,4.37 GB (estimated maximum),4-15:46:18,09:41:04,1000,20,5,2,2,4,1,39,Adam,2000,,,True,True,0.001,0,0.08293733070345123,0.09333736577841051,0.11610119865410581,0.08326770332784339
+originID,jobID,cores,memory,CPU time,time,Npoints,nT,Nwout,nE,nM,nL,nx,Nparams,optimizer,Nepochs,Ncev/w,Ncev,grad,shuffle,stepsize,Nshots,RMSE tra,RMSE val,RMSE tes,RMSE ftes
+13227,13627,54,4.37 GB (estimated maximum),4-15:46:18,09:41:04,1000,20,5,2,2,4,1,39,Adam,1339,,,True,True,0.001,0,0.08293733070345123,0.09333736577841051,0.11610119865410581,0.08326770332784339

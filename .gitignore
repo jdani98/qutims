@@ -4,6 +4,7 @@ slurm*
 runpymulti.sh
 runpy.sh
 .grad_*
+!.grad_best_*
 .param_*
 
 __pycache__/
